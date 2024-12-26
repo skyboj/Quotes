@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Competishn</title>
+    <!-- Подключение шрифта и стилей -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+        .button {
+            width: 45%;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .button-left {
+            background-color: #4CAF50;
+        }
+        .button-right {
+            background-color: #2196F3;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Какой вариант лучше?</h1>
+    <div class="container">
+        <!-- Кнопка для первого варианта -->
+        <button class="button button-left" id="left" onclick="location.href='/vote/{{ quote1.id }}/{{ quote2.id }}'">
+            {{ quote1.text }}
+        </button>
+        <!-- Кнопка для второго варианта -->
+        <button class="button button-right" id="right" onclick="location.href='/vote/{{ quote2.id }}/{{ quote1.id }}'">
+            {{ quote2.text }}
+        </button>
+    </div>
+
+    <!-- Скрипт для управления клавишами -->
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                document.getElementById('left').click(); // Нажатие левой клавиши
+            } else if (event.key === 'ArrowRight') {
+                document.getElementById('right').click(); // Нажатие правой клавиши
+            }
+        });
+    </script>
+</body>
+</html>
